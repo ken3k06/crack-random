@@ -17,10 +17,13 @@ def seedrand(x):
         x += int32max
     return x
 class RNGSource:
-    def __init__(self):
+    def __init__(self, v):
         self.tap = 0 
         self.feed = rngLen - rngTap
-        self.vec = [0] * rngLen
+        if v is None:
+            self.vec = [0] * rngLen
+        else:
+            self.vec = v 
     def seed(self,seed):
         self.tap = 0 
         self.feed = rngLen - rngTap
@@ -53,7 +56,3 @@ class RNGSource:
         x = self.vec[self.feed] + self.vec[self.tap]
         self.vec[self.feed] = x
         return int(x) & 0xFFFFFFFFFFFFFFFF
-rng = RNGSource()
-rng.seed(1234)
-output = [rng.uint64() for _ in range(123)]
-print(output)
