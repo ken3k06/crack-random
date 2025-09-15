@@ -4,7 +4,7 @@ from z3 import *
 s = Solver()
 vec = [BitVec(f'v_{i}', 64) for i in range(rngLen)]
 cur = vec[:]
-test_case = 700
+test_case = 650
 
 tap = 0
 feed = rngLen - rngTap
